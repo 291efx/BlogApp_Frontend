@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-4">
+  <a class="navbar-brand" routerLink="/">BlogApp</a>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="usuario">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/mis-posts">Mis Posts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/nuevo">Nuevo Post</a>
+      </li>
+    </ul>
+
+    <span class="me-3" *ngIf="usuario">Bienvenido, {{ usuario }}</span>
+    <button class="btn btn-outline-danger" *ngIf="usuario" (click)="logout()">Logout</button>
+  </div>
+</nav>

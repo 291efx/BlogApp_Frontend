@@ -1,0 +1,16 @@
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">Mis Publicaciones</h2>
+
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let post of misPublicaciones">
+      <div class="card h-100 shadow-sm">
+        <img [src]="post.archivo" class="card-img-top" alt="Imagen" style="max-height: 200px; object-fit: cover;" />
+        <div class="card-body">
+          <h5 class="card-title">{{ post.titulo }}</h5>
+          <p class="card-text">{{ post.descripcion }}</p>
+          <a class="btn btn-outline-primary w-100" [routerLink]="['/post', post.id]">Ver publicación</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

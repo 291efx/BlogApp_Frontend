@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Últimas Publicaciones</h2>
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let post of posts">
+    <div class="card shadow-sm">
+        <img [src]="post.rutaArchivo" class="card-img-top" alt="Post image" />
+        <div class="card-body">
+          <h5 class="card-title">{{ post.titulo }}</h5>
+          <p class="card-text">{{ post.descripcion }}</p>
+          <div class="d-flex justify-content-between align-items-center text-muted small">
+            <span>
+              <i class="bi bi-person"></i> {{ post.usuarioNombre }}
+            </span>
+            <span>
+              <i class="bi bi-clock"></i> {{ post.fechaPublicacion | date:'short' }}
+            </span>
+          </div>
+          <a class="btn btn-outline-primary btn-sm w-100 mt-2" [routerLink]="['/post', post.id]">
+            Ver publicación
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
