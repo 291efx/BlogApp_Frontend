@@ -20,13 +20,8 @@ export class LoginComponent {
 
   login() {
     this.authService.login(this.email, this.password).subscribe({
-      next: () => {
-        localStorage.setItem('usuario', this.email);
-        this.router.navigate(['/']);
-      },
-      error: () => {
-        alert('Credenciales inválidas');
-      }
+      next: data => console.log("Usuario autenticado:", data),
+      error: err => console.error("Error al loguear:", err)
     });
   }
 }

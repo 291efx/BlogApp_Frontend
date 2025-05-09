@@ -14,10 +14,10 @@ export class AuthService {
     const headers = new HttpHeaders({
       Authorization: 'Basic ' + btoa(username + ':' + password)
     });
+    return this.http.get(this.apiUrl + "/api/usuarios/me", { headers });
 
-    // Usamos un endpoint público para probar que las credenciales son válidas
-    return this.http.get("http://localhost:8080/api/publicaciones");
   }
+  
 
   registrar(usuario: any) {
     return this.http.post("http://localhost:8080/api/usuarios/registrar", usuario);
