@@ -10,7 +10,11 @@
           [(ngModel)]="nombre"
           id="nombre"
           required
+          #nombreInput="ngModel"
         />
+        <div *ngIf="nombreInput.invalid && nombreInput.touched" class="error">
+          El nombre es requerido.
+        </div>
       </div>
 
       <div class="form-group">
@@ -21,7 +25,12 @@
           [(ngModel)]="email"
           id="email"
           required
+          email
+          #emailInput="ngModel"
         />
+        <div *ngIf="emailInput.invalid && emailInput.touched" class="error">
+          Debes ingresar un correo electrónico válido.
+        </div>
       </div>
 
       <div class="form-group">
@@ -32,13 +41,17 @@
           [(ngModel)]="password"
           id="password"
           required
+          #passwordInput="ngModel"
         />
+        <div *ngIf="passwordInput.invalid && passwordInput.touched" class="error">
+          La contraseña es requerida.
+        </div>
       </div>
 
-      <button type="submit">Registrarse</button>
+      <button type="submit" [disabled]="registroForm.invalid">Registrarse</button>
       <p class="link">
         ¿Ya tienes cuenta?
-        <a routerLink="/login">Inicia sesión</a>
+        <a [routerLink]="['/login']">Inicia Sesión</a>
       </p>
     </form>
   </div>

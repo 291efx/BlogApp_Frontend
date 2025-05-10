@@ -3,6 +3,8 @@ import { PostService } from '../../services/post.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Post } from '../../models/post.model';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-post-list',
@@ -14,7 +16,7 @@ import { Post } from '../../models/post.model';
 export class PostListComponent implements OnInit {
   posts: Post[] = [];
 
-  constructor(private postService: PostService) {}
+  constructor(private postService: PostService,  private router: Router) {}
 
   ngOnInit(): void {
     this.postService.listarPublicaciones().subscribe({
@@ -22,4 +24,9 @@ export class PostListComponent implements OnInit {
       error: () => alert('Error al cargar publicaciones')
     });
   }
+
+  verDetalle(id: number) {
+    this.router.navigate(['/post', id]); // <--- NAVEGACIÓN
+  }
+
 }

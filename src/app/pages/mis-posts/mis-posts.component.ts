@@ -16,12 +16,18 @@ export class MisPostsComponent implements OnInit {
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    const username = localStorage.getItem('usuario');
-    if (username) {
-      this.postService.listarPorUsuario(username).subscribe({
+    const userId = localStorage.getItem('usuarioId'); // Recupera el ID del usuario
+    if (userId) {
+      this.postService.listarPorUsuario(userId).subscribe({
         next: data => this.misPublicaciones = data,
         error: () => alert('Error al cargar tus publicaciones')
       });
+    } else {
+      alert('No se ha encontrado el ID de usuario.');
     }
   }
+  
+  
 }
+
+

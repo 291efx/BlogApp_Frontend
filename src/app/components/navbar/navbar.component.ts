@@ -11,16 +11,22 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, RouterModule]
 })
 export class NavbarComponent implements OnInit {
-  usuario: string | null = null;
+  usuario: any = null;
 
   ngOnInit(): void {
-    this.usuario = localStorage.getItem('usuario');
+    const usuarioGuardado = localStorage.getItem('usuario');
+    if (usuarioGuardado) {
+      this.usuario = JSON.parse(usuarioGuardado);
+    }
   }
 
   constructor(private router: Router) {}
 
   logout() {
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('authToken');
     localStorage.clear();
+ 
     this.router.navigate(['/login']);
     this.usuario = null;
   }

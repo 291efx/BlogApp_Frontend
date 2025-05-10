@@ -6,17 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ComentarioService {
-
-  private apiUrl = 'http://localhost:8080/publicaciones';
+  private apiUrl = 'http://localhost:8080/api/comentarios';
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * Publica un comentario en una publicación específica
-   * @param postId ID de la publicación
-   * @param comentario Objeto con texto y usuario
-   */
-  comentar(postId: number, comentario: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${postId}/comentarios`, comentario);
+  listarPorPublicacion(publicacionId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/publicacion/${publicacionId}`);
+  }
+
+  comentar(comentario: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/crear`, comentario);
   }
 }

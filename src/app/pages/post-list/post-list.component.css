@@ -1,0 +1,47 @@
+/* Aplica margen al título principal */
+.container h2 {
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  
+  /* Personaliza las tarjetas */
+  .card {
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Imagen de la tarjeta */
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  /* Título del post */
+  .card-title {
+    font-size: 1.25rem;
+    color: #007bff;
+  }
+  
+  /* Botón de acción */
+  .card .btn-outline-primary {
+    font-weight: 500;
+    border-width: 2px;
+  }
+  
+  .card .btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Texto meta (usuario y fecha) */
+  .card .text-muted {
+    font-size: 0.85rem;
+  }
+  

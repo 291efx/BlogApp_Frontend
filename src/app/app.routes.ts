@@ -7,9 +7,11 @@ import { PostFormComponent } from './pages/post-form/post-form.component';
 import { MisPostsComponent } from './pages/mis-posts/mis-posts.component';
 import { authGuard } from './guards/auth.guard';
 
+/*
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
+  { path: 'post-list', component: PostListComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' },
   { path: '', component: PostListComponent },
@@ -28,5 +30,17 @@ export const routes: Routes = [
   { path: 'mis-posts', component: MisPostsComponent, canActivate: [authGuard] },
 
   { path: '**', redirectTo: '' }
+];*/
+
+export const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'registro', component: RegistroComponent },
+  { path: 'post-list', component: PostListComponent, canActivate: [authGuard] },
+  { path: 'post/:id', component: PostDetailComponent },
+  { path: 'nuevo', component: PostFormComponent, canActivate: [authGuard] },
+  { path: 'mis-posts', component: MisPostsComponent, canActivate: [authGuard] },
+  { path: '**', redirectTo: 'login' }
 ];
+
 

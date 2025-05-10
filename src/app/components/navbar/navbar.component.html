@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light px-4">
-  <a class="navbar-brand" routerLink="/">BlogApp</a>
+  <a class="navbar-brand">BlogApp</a>
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="usuario">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/">Home</a>
+        <a class="nav-link" routerLink="/post-list">Inicio</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/mis-posts">Mis Posts</a>
@@ -13,7 +13,7 @@
       </li>
     </ul>
 
-    <span class="me-3" *ngIf="usuario">Bienvenido, {{ usuario }}</span>
+    <span class="me-3" *ngIf="usuario">Bienvenido, {{ usuario.nombre }}</span>
     <button class="btn btn-outline-danger" *ngIf="usuario" (click)="logout()">Logout</button>
   </div>
 </nav>

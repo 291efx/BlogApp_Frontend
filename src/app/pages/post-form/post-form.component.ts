@@ -11,29 +11,55 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./post-form.component.css'],
   imports: [CommonModule, FormsModule]
 })
+
 export class PostFormComponent {
-  titulo = '';
-  descripcion = '';
-  archivo = '';
+  formulario = {
+    titulo: '',
+    contenido: '',
+    usuarioId: null
+  };
+
+  archivoSeleccionado: File = null!;
 
   constructor(private postService: PostService, private router: Router) {}
 
-  crearPost() {
-    const post = {
-      titulo: this.titulo,
-      descripcion: this.descripcion,
-      archivo: this.archivo,
-      usuario: {
-        username: localStorage.getItem('usuario')
-      }
-    };
+  seleccionarArchivo(event: any) {
+    this.archivoSeleccionado = event.target.files[0];
+  }
 
-    this.postService.crearPublicacion(post).subscribe({
-      next: () => {
-        alert('¡Publicación creada!');
+  enviarFormulario(event: Event) {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append('titulo', this.formulario.titulo);
+    formData.append('contenido', this.formulario.contenido);
+    formData.append('archivo', this.archivoSeleccionado);
+
+    const usuarioGuardado = localStorage.getItem('usuario');
+    if (usuarioGuardado) {
+      const usuario = JSON.parse(usuarioGuardado);
+      this.formulario.usuarioId = usuario.id;
+      formData.append('usuarioId', this.formulario.usuarioId ?? '');
+    } else {
+      alert('No se encontró el usuario en el almacenamiento local.');
+      return;
+    }
+    console.log('Formulario enviado:', this.formulario);
+
+    this.postService.crearPublicacion(formData).subscribe({
+      next: res => {
+        console.log('Éxito:', res);
+        alert(res.mensaje);  // mostrará "Publicación creada con éxito"
         this.router.navigate(['/']);
       },
-      error: () => alert('No se pudo crear la publicación')
+      error: err => {
+        console.error('Error:', err);
+        alert('Hubo un error al crear la publicación.');
+      }
+
     });
   }
 }
+
+
+
