@@ -4,6 +4,8 @@ export interface Post {
   descripcion: string;
   rutaArchivo: string;             // ✅ imagen o archivo
   fechaPublicacion: Date;          // ✅ para pipe date
-  usuarioNombre: string;           // ✅ mostrar nombre del usuario
+  usuario:   {
+    nombre: string; 
+  }        // ✅ mostrar nombre del usuario
   cantidadComentarios: number;     // si lo estás usando
 }

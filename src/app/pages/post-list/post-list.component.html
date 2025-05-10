@@ -10,7 +10,7 @@
           <p class="card-text">{{ post.descripcion }}</p>
           <div class="d-flex justify-content-between align-items-center text-muted small">
             <span>
-              <i class="bi bi-person"></i> {{ post.usuarioNombre }}
+              <i class="bi bi-person"></i> {{ post.usuario.nombre }}
             </span>
             <span>
               <i class="bi bi-clock"></i> {{ post.fechaPublicacion | date:'short' }}
