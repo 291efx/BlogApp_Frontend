@@ -50,9 +50,17 @@ export class PostDetailComponent implements OnInit {
   }
 
   comentar() {
+    //explicar esto
+    var userString =localStorage.getItem("usuario");
+    console.log(userString);
+    if (!userString) {
+      console.error("No se encontró el usuario en el localStorage.");
+      return;
+    }
+    const user = JSON.parse(userString); 
     const comentario = {
       contenido: this.nuevoComentario,
-      usuario: { id: 1 }, // Esto debería ser dinámico, usando el ID del usuario autenticado
+      usuario: { id: parseInt(user.id)},
       publicacion: { id: this.postId }
     };
 
