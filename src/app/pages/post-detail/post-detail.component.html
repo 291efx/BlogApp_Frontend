@@ -4,15 +4,13 @@
     <p class="text-muted small">
       {{ post.usuario?.nombre }} | {{ post.fechaPublicacion | date:'medium' }}
     </p>
-    <div class="mb-3">
-      <button
-  class="btn btn-outline-dark btn-sm me-2"
-  data-bs-toggle="modal"
-  data-bs-target="#modalEditarPublicacion"
-  (click)="llenarFormularioEditar()">Editar Publicación</button>
-  <button class="btn btn-danger btn-sm" (click)="eliminarPublicacion()">Eliminar Publicación</button>
+    <div class="mb-3" *ngIf="esAutor()">
+      <button class="btn btn-outline-dark btn-sm me-2" data-bs-toggle="modal" data-bs-target="#modalEditarPublicacion"
+        (click)="llenarFormularioEditar()">Editar Publicación</button>
+      <button class="btn btn-danger btn-sm" (click)="eliminarPublicacion()">Eliminar Publicación</button>
     </div>
-    <img *ngIf="post.rutaArchivo" [src]="'http://localhost:8080/' + post.rutaArchivo" alt="Imagen" class="img-fluid rounded shadow-sm mb-3">
+    <img *ngIf="post.rutaArchivo" [src]="'http://localhost:8080/' + post.rutaArchivo" alt="Imagen"
+      class="img-fluid rounded shadow-sm mb-3">
     <p>{{ post.contenido }}</p>
 
     <hr>
@@ -21,7 +19,8 @@
     <h6 class="mt-4"><i class="bi bi-chat-left-text"></i> Comentarios ({{ comentarios.length }})</h6>
 
     <div class="mb-3">
-      <textarea [(ngModel)]="nuevoComentario" class="form-control" rows="3" placeholder="Escribe tu comentario aquí..."></textarea>
+      <textarea [(ngModel)]="nuevoComentario" class="form-control" rows="3"
+        placeholder="Escribe tu comentario aquí..."></textarea>
       <div class="text-end mt-2">
         <button class="btn btn-primary btn-sm" (click)="comentar()">
           <i class="bi bi-send"></i> Publicar Comentario
@@ -54,12 +53,14 @@
         <div class="modal-body">
           <div class="mb-3">
             <label for="tituloEdit" class="form-label">Título</label>
-            <input type="text" id="tituloEdit" class="form-control" [(ngModel)]="formularioEdit.titulo" name="tituloEdit" required>
+            <input type="text" id="tituloEdit" class="form-control" [(ngModel)]="formularioEdit.titulo"
+              name="tituloEdit" required>
           </div>
 
           <div class="mb-3">
             <label for="contenidoEdit" class="form-label">Contenido</label>
-            <textarea id="contenidoEdit" class="form-control" [(ngModel)]="formularioEdit.contenido" name="contenidoEdit" rows="4" required></textarea>
+            <textarea id="contenidoEdit" class="form-control" [(ngModel)]="formularioEdit.contenido"
+              name="contenidoEdit" rows="4" required></textarea>
           </div>
 
           <div class="mb-3">
@@ -75,4 +76,3 @@
     </div>
   </div>
 </div>
-

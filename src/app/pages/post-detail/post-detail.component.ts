@@ -29,10 +29,18 @@ export class PostDetailComponent implements OnInit {
     private comentarioService: ComentarioService
   ) {}
 
+  usuarioActual: any;
+
+
   ngOnInit(): void {
     this.postId = +this.route.snapshot.paramMap.get('id')!;
     this.cargarPost();
     this.cargarComentarios();
+    this.usuarioActual = JSON.parse(localStorage.getItem('usuario') || '{}');
+  }
+
+  esAutor(): boolean {
+    return this.post?.usuario?.id === this.usuarioActual?.id;
   }
 
   cargarPost() {

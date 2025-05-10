@@ -16,18 +16,21 @@ export class AuthService {
       'Authorization': 'Basic ' + token
     });
     localStorage.setItem('authToken', token);
-    return this.http.get<any>(this.apiUrl+'/api/usuarios/me', {
+  
+    return this.http.get<any>(this.apiUrl + '/api/usuarios/me', {
       headers,
-      withCredentials: true // <-- también inclúyelo, pero solo si tu backend acepta credenciales cruzadas
+      withCredentials: true // Si tu backend necesita enviar cookies
     });
-    return this.http.get(this.apiUrl + "/api/usuarios/me", { headers });
-
   }
+  
   
 
   registrar(usuario: any) {
+    // Elimina temporalmente el token antes de registrar
+    localStorage.removeItem('authToken');
     return this.http.post("http://localhost:8080/api/usuarios/registrar", usuario);
   }
+  
 
   // Método para verificar si el usuario está logueado
   isLoggedIn(): boolean {
