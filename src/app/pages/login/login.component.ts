@@ -20,10 +20,6 @@ export class LoginComponent {
 
   login() {
     this.authService.login(this.email, this.password).subscribe({
-<<<<<<< HEAD
-      next: data => console.log("Usuario autenticado:", data),
-      error: err => console.error("Error al loguear:", err)
-=======
       next: (response) => {
         console.log('Usuario logueado:', response);
         localStorage.setItem('usuario', JSON.stringify(response)); 
@@ -33,7 +29,6 @@ export class LoginComponent {
         console.error('Login failed', err);
         alert('Credenciales inválidas');
       }
->>>>>>> 74686f8 (proyecto funcional)
     });
   }
 }

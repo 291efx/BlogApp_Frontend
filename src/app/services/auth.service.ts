@@ -20,11 +20,8 @@ export class AuthService {
       headers,
       withCredentials: true // <-- también inclúyelo, pero solo si tu backend acepta credenciales cruzadas
     });
-<<<<<<< HEAD
     return this.http.get(this.apiUrl + "/api/usuarios/me", { headers });
 
-=======
->>>>>>> 74686f8 (proyecto funcional)
   }
   
 
